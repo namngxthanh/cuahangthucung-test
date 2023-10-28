@@ -1,0 +1,35 @@
+﻿<style>
+    #Datmua a {
+        display: inline-block;
+        background-color: red; /* Màu nền đỏ */
+        color: white; /* Màu chữ trắng */
+        text-decoration: none; /* Loại bỏ gạch chân dưới */
+        padding: 10px 20px; /* Kích thước padding cho nút */
+        border: none; /* Loại bỏ viền */
+        border-radius: 5px; /* Bo tròn góc cho nút */
+        cursor: pointer; /* Hiển thị con trỏ khi di chuột vào nút */
+    }
+</style>
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+
+<div>
+    <div style="width:60%;float:left;border-left:dotted 1px;border-color:azure">
+        <img src="~/Image/@Model.AnhBia" width="100%" />
+    </div>
+    <div style="width:60%;float:left;padding:10px;">
+        <h4 style="font-weight:bold;color:red">Tên sách  @Model.TenTC</h4>
+        <p style="text-align:justify"><span style="font-weight:bold">mo ta</span> @Model.MoTa</p>
+        <p style="font-weight:bold">Giá bán: <span style="color:red; font-size:16pt"> @Model.GiaBan VNĐ</span></p>
+        <div id="Datmua">
+            <a href="@Url.Action("ThemGioHang","GioHang",new { id = Model.MaTC  })">Đặt mua
+            </a>
+        </div>
+
+    </div>
+</div>

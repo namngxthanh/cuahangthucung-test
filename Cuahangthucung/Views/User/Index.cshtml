@@ -1,0 +1,67 @@
+﻿@model PagedList.IPagedList<Cuahangthucung.Models.THUCUNG>
+@using PagedList.Mvc
+@using PagedList
+@using Cuahangthucung.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #Datmua a {
+        display: inline-block;
+        background-color: red; /* Màu nền đỏ */
+        color: white; /* Màu chữ trắng */
+        text-decoration: none; /* Loại bỏ gạch chân dưới */
+        padding: 10px 20px; /* Kích thước padding cho nút */
+        border: none; /* Loại bỏ viền */
+        border-radius: 5px; /* Bo tròn góc cho nút */
+        cursor: pointer; /* Hiển thị con trỏ khi di chuột vào nút */
+        margin:10px;
+        
+    }
+</style>
+<h2>Index</h2>
+<div class="row">
+    @foreach (var Thucung in Model)
+    {
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="img-thumbnail">
+                <a href="@Url.Action("Details","User", new { id = Thucung.MaTC})">
+                    <img alt="@Thucung.TenTC" src="~/Image/@Thucung.AnhBia" width="200" height="200" />
+                    <div>
+                        <br />
+                        <h4 style="text-align:center">
+                            @Thucung.TenTC
+                        </h4>
+                        <p></p>
+                    </div>
+                    <div class="ratings">
+                        <p class="pull-right">155 reviews</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                        </p>
+                    </div>
+
+                </a>
+                <div id="Datmua">
+                    <a href="@Url.Action("ThemGioHang","GioHang", new { ms = Thucung.MaTC, url = Request.Url.ToString() })">
+                        Add to Cart
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+</div>
+<style>
+    .MenuTrang {
+        display: inline;
+        text-align: center;
+    }
+</style>
